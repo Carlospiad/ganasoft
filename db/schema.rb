@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523213117) do
+ActiveRecord::Schema.define(version: 20150529010200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "animal_relationships", force: :cascade do |t|
+    t.string   "relationship_type"
+    t.integer  "animal_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "animal_relationships", ["animal_id"], name: "index_animal_relationships_on_animal_id", using: :btree
+
+  create_table "animals", force: :cascade do |t|
+    t.string   "brand_identification"
+    t.string   "breed"
+    t.boolean  "branded"
+    t.date     "date_of_birth"
+    t.date     "date_of_purchase"
+    t.string   "gender"
+    t.string   "country_of_birth"
+    t.string   "status"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -50,4 +72,5 @@ ActiveRecord::Schema.define(version: 20150523213117) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "animal_relationships", "animals"
 end

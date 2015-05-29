@@ -1,0 +1,58 @@
+<%= form_for(@animal) do |f| %>
+  <% if @animal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@animal.errors.count, "error") %> prohibited this animal from being saved:</h2>
+
+      <ul>
+      <% @animal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :brand_identification %><br>
+    <%= f.text_field :brand_identification %>
+  </div>
+  <div class="field">
+    <%= f.label :breed %><br>
+    <%= f.text_field :breed %>
+  </div>
+  <div class="field">
+    <%= f.label :branded %><br>
+    <%= f.check_box :branded %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_birth %><br>
+    <%= f.date_select :date_of_birth %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_purchase %><br>
+    <%= f.date_select :date_of_purchase %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %><br>
+    <%= f.text_field :gender %>
+  </div>
+  <div class="field">
+    <%= f.label :country_of_birth %><br>
+    <%= f.text_field :country_of_birth %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :mother_id %><br>
+    <%= collection_select(:mother_id, :animal_id, Animal.all, :id, :brand_identification,:include_blank => true ) %>
+  </div>
+  <div class="field">
+    <%= f.label :father_id %><br>
+    <%= collection_select(:father_id, :animal_id, Animal.all, :id, :brand_identification, :include_blank => true ) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

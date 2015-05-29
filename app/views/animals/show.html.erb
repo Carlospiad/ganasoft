@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Brand identification:</strong>
+  <%= @animal.brand_identification %>
+</p>
+
+<p>
+  <strong>Breed:</strong>
+  <%= @animal.breed %>
+</p>
+
+<p>
+  <strong>Branded:</strong>
+  <%= @animal.branded %>
+</p>
+
+<p>
+  <strong>Date of birth:</strong>
+  <%= @animal.date_of_birth %>
+</p>
+
+<p>
+  <strong>Date of purchase:</strong>
+  <%= @animal.date_of_purchase %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @animal.gender %>
+</p>
+
+<p>
+  <strong>Country of birth:</strong>
+  <%= @animal.country_of_birth %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @animal.status %>
+</p>
+
+<%= link_to 'Edit', edit_animal_path(@animal) %> |
+<%= link_to 'Back', animals_path %>
