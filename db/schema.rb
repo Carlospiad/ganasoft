@@ -11,19 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529010200) do
+ActiveRecord::Schema.define(version: 20150529031858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "animal_relationships", force: :cascade do |t|
-    t.string   "relationship_type"
-    t.integer  "animal_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  add_index "animal_relationships", ["animal_id"], name: "index_animal_relationships_on_animal_id", using: :btree
 
   create_table "animals", force: :cascade do |t|
     t.string   "brand_identification"
@@ -34,9 +25,14 @@ ActiveRecord::Schema.define(version: 20150529010200) do
     t.string   "gender"
     t.string   "country_of_birth"
     t.string   "status"
+    t.integer  "mother_id_id"
+    t.integer  "father_id_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
+
+  add_index "animals", ["father_id_id"], name: "index_animals_on_father_id_id", using: :btree
+  add_index "animals", ["mother_id_id"], name: "index_animals_on_mother_id_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -72,5 +68,15 @@ ActiveRecord::Schema.define(version: 20150529010200) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "animal_relationships", "animals"
+  create_table "weight_histories", force: :cascade do |t|
+    t.decimal  "weight",         precision: 6, scale: 2
+    t.integer  "animal_id"
+    t.date     "date_of_weight"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "weight_histories", ["animal_id"], name: "index_weight_histories_on_animal_id", using: :btree
+
+  add_foreign_key "weight_histories", "animals"
 end

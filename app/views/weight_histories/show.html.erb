@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @weight_history.weight %>
+</p>
+
+<p>
+  <strong>Animal:</strong>
+  <%= @weight_history.animal.brand_identification %>
+</p>
+
+<p>
+  <strong>Date of weight:</strong>
+  <%= @weight_history.date_of_weight %>
+</p>
+
+<%= link_to 'Edit', edit_weight_history_path(@weight_history) %> |
+<%= link_to 'Back', weight_histories_path %>

@@ -1,10 +1,15 @@
 class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :edit, :update, :destroy]
+  before_action :load_asociated, only: [:edit,:new,:create]
+
+  respond_to :html
+
 
   # GET /animals
   # GET /animals.json
   def index
     @animals = Animal.all
+
   end
 
   # GET /animals/1
@@ -15,6 +20,8 @@ class AnimalsController < ApplicationController
   # GET /animals/new
   def new
     @animal = Animal.new
+    respond_with(@animal)
+
   end
 
   # GET /animals/1/edit
@@ -66,9 +73,12 @@ class AnimalsController < ApplicationController
     def set_animal
       @animal = Animal.find(params[:id])
     end
+    def load_asociated
+      @animals = Animal.all
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def animal_params
-      params.require(:animal).permit(:brand_identification, :breed, :branded, :date_of_birth, :date_of_purchase, :gender, :country_of_birth, :status)
+      params.require(:animal).permit(:brand_identification, :animal_id, :breed, :branded, :date_of_birth, :date_of_purchase, :gender, :country_of_birth, :status)
     end
 end

@@ -1,0 +1,31 @@
+<%= form_for(@weight_history) do |f| %>
+  <% if @weight_history.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@weight_history.errors.count, "error") %> prohibited this weight_history from being saved:</h2>
+
+      <ul>
+      <% @weight_history.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :weight %><br>
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :animal_id %><br>
+    <%= f.collection_select(:animal_id, @animals, :id, :brand_identification,:include_blank => true) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :date_of_weight %><br>
+    <%= f.date_select :date_of_weight %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

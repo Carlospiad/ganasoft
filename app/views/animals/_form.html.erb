@@ -45,11 +45,11 @@
   </div>
   <div class="field">
     <%= f.label :mother_id %><br>
-    <%= collection_select(:mother_id, :animal_id, Animal.all, :id, :brand_identification,:include_blank => true ) %>
+    <%= collection_select(:mother_id, :animal_id, @animals, :id, :brand_identification,:include_blank => true ) %>
   </div>
   <div class="field">
     <%= f.label :father_id %><br>
-    <%= collection_select(:father_id, :animal_id, Animal.all, :id, :brand_identification, :include_blank => true ) %>
+    <%= collection_select(:father_id, :animal_id, @animals, :id, :brand_identification, :include_blank => true ) %>
   </div>
 
   <div class="actions">

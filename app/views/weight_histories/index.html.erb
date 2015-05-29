@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Weight Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Weight</th>
+      <th>Animal Brand ID</th>
+      <th>Date of weight</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @weight_histories.each do |weight_history| %>
+      <tr>
+        <td><%= weight_history.weight %></td>
+        <td><%= weight_history.animal.brand_identification %></td>
+        <td><%= weight_history.date_of_weight %></td>
+        <td><%= link_to 'Show', weight_history %></td>
+        <td><%= link_to 'Edit', edit_weight_history_path(weight_history) %></td>
+        <td><%= link_to 'Destroy', weight_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Weight history', new_weight_history_path %>
